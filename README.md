@@ -1,5 +1,5 @@
 # gamma
-Gamma Kernel repository, for everyone to fork
+Gamma Operating System repository, for everyone to fork
 
 A free, open source Unix-like kernel scaffold for the Gamma Operating System.
 
