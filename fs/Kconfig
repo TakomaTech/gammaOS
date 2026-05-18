@@ -1,0 +1,5 @@
+menuconfig FS
+    bool "Filesystem support"
+    default y
+    help
+      Enable filesystem and VFS support for the Gamma kernel.

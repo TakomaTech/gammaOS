@@ -1,0 +1,5 @@
+menuconfig NET
+    bool "Networking"
+    default y
+    help
+      Enable networking subsystem support.

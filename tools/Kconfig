@@ -1,0 +1,5 @@
+menuconfig TOOLS
+    bool "Kernel tools"
+    default y
+    help
+      Enable userland tools and utilities for kernel development.

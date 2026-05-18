@@ -1,13 +1,10 @@
-# Kernel top-level makefile for Gamma
-# This file lists kernel objects for the build system.
-
 BUILD ?= $(CURDIR)/../build
-OUTPUT_DIR := $(BUILD)/kernel
+OUTPUT_DIR := $(BUILD)/init
 INCLUDE_DIR := $(CURDIR)/../include
 CC ?= gcc
 CFLAGS ?= -m64 -ffreestanding -O2 -Wall -Wextra -fno-pie -I$(INCLUDE_DIR)
 
-obj-y := tty.o main.o
+obj-y := init.o
 
 OBJS := $(obj-y:%=$(OUTPUT_DIR)/%)
 

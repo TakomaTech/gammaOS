@@ -1,0 +1,5 @@
+menuconfig CRYPTO
+    bool "Cryptographic support"
+    default y
+    help
+      Enable cryptographic primitives and security helpers.

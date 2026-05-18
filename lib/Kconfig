@@ -1,0 +1,5 @@
+menuconfig LIB
+    bool "Kernel library helpers"
+    default y
+    help
+      Enable reusable kernel library support.

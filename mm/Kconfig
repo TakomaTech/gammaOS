@@ -1,0 +1,5 @@
+menuconfig MM
+    bool "Memory management"
+    default y
+    help
+      Enable memory management subsystem for Gamma.

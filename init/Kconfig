@@ -1,0 +1,5 @@
+menuconfig INIT
+    bool "Init support"
+    default y
+    help
+      Enable early init and init process support.

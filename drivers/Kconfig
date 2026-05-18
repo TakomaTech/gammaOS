@@ -1,0 +1,5 @@
+menuconfig DRIVERS
+    bool "Kernel drivers"
+    default y
+    help
+      Enable kernel driver support infrastructure.

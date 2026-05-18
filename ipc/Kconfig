@@ -1,0 +1,5 @@
+menuconfig IPC
+    bool "IPC support"
+    default y
+    help
+      Enable inter-process communication primitives.

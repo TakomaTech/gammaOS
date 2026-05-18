@@ -1,0 +1,5 @@
+menuconfig BLOCK
+    bool "Block device subsystem"
+    default y
+    help
+      Enable block device support for storage.
