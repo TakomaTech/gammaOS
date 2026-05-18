@@ -1,5 +1,6 @@
-config GAMMA_KERNEL
-    bool "Gamma kernel"
+menuconfig GAMMA
+    bool "Gamma kernel configuration"
     default y
-    help
-      Enable the Gamma kernel build.
+
+source "kernel/Kconfig"
+source "arch/Kconfig"

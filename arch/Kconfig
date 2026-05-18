@@ -1,0 +1,5 @@
+menuconfig GAMMA_ARCH
+    bool "Architecture support"
+    default y
+
+source "arch/x86/Kconfig"

@@ -1,0 +1,5 @@
+config GAMMA_KERNEL
+    bool "Gamma kernel"
+    default y
+    help
+      Enable the core Gamma kernel.

@@ -5,9 +5,7 @@ ISO_IMAGE=$(BUILD)/gamma.iso
 GRUB_CFG=$(ISO)/boot/grub/grub.cfg
 
 CC=gcc
-LD=ld
 CFLAGS=-m64 -ffreestanding -O2 -Wall -Wextra -fno-pie
-LDFLAGS=-T src/linker.ld -nostdlib
 
 .PHONY: all clean run iso
 all: $(ISO_IMAGE)
@@ -19,9 +17,7 @@ $(ISO):
 	mkdir -p $(ISO)/boot/grub
 
 $(KERNEL): | $(BUILD)
-	$(CC) $(CFLAGS) -c src/boot.S -o $(BUILD)/boot.o
-	$(CC) $(CFLAGS) -c src/kernel.c -o $(BUILD)/kernel.o
-	$(LD) $(LDFLAGS) -o $(KERNEL) $(BUILD)/boot.o $(BUILD)/kernel.o
+	$(MAKE) -C arch/x86/boot BUILD=$(BUILD)
 
 $(GRUB_CFG): | $(ISO)
 	cat > $(GRUB_CFG) <<'EOF'
@@ -42,3 +38,4 @@ run: $(ISO_IMAGE)
 
 clean:
 	rm -rf $(BUILD) $(ISO)
+	$(MAKE) -C arch/x86/boot clean BUILD=$(BUILD)

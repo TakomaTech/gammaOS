@@ -1,0 +1,5 @@
+config ARCH_X86
+    bool "x86 architecture support"
+    default y
+    help
+      Enable x86-specific boot and startup code.

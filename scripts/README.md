@@ -6,3 +6,7 @@ Common script categories:
 - build helpers
 - kernel configuration
 - tooling wrappers
+
+## Available scripts
+
+- `build.sh` — invoke the repository `Makefile` from the project root.
