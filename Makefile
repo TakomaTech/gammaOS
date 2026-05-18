@@ -21,13 +21,13 @@ $(KERNEL): | $(BUILD)
 
 $(GRUB_CFG): | $(ISO)
 	cat > $(GRUB_CFG) <<'EOF'
-set timeout=0
-set default=0
-menuentry "Gamma Kernel" {
-    multiboot2 /boot/kernel.elf
-    boot
-}
-EOF
+	set timeout=0
+	set default=0
+	menuentry "Gamma Kernel" {
+	    multiboot2 /boot/kernel.elf
+	    boot
+	}
+	EOF
 
 $(ISO_IMAGE): $(KERNEL) $(GRUB_CFG)
 	cp $(KERNEL) $(ISO)/boot/kernel.elf
