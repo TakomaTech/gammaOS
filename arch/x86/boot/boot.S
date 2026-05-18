@@ -27,9 +27,11 @@ start:
     mov %rax, %es
     mov %rax, %ss
     lea stack+8192(%rip), %rsp
-    extern kmain
+    .extern kmain
     call kmain
 
 hang:
     hlt
     jmp hang
+
+.section .note.GNU-stack,"",@progbits

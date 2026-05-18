@@ -1,17 +1,17 @@
-BUILD ?= $(CURDIR)/../../build
-KERNEL_DIR := $(CURDIR)/../../kernel
-LIB_DIR := $(CURDIR)/../../lib
-DRIVERS_DIR := $(CURDIR)/../../drivers
-MM_DIR := $(CURDIR)/../../mm
-FS_DIR := $(CURDIR)/../../fs
-NET_DIR := $(CURDIR)/../../net
-INIT_DIR := $(CURDIR)/../../init
-IPC_DIR := $(CURDIR)/../../ipc
-INCLUDE_DIR := $(CURDIR)/../../include
+BUILD ?= $(CURDIR)/../../../build
+KERNEL_DIR := $(CURDIR)/../../../kernel
+LIB_DIR := $(CURDIR)/../../../lib
+DRIVERS_DIR := $(CURDIR)/../../../drivers
+MM_DIR := $(CURDIR)/../../../mm
+FS_DIR := $(CURDIR)/../../../fs
+NET_DIR := $(CURDIR)/../../../net
+INIT_DIR := $(CURDIR)/../../../init
+IPC_DIR := $(CURDIR)/../../../ipc
+INCLUDE_DIR := $(CURDIR)/../../../include
 
 CC=gcc
 CFLAGS=-m64 -ffreestanding -O2 -Wall -Wextra -fno-pie -I$(INCLUDE_DIR)
-LDFLAGS=-T linker.ld -nostdlib
+LDFLAGS=-T linker.ld -nostdlib -no-pie
 
 OBJDIR := $(BUILD)/arch/x86/boot
 KERNEL_OBJS := $(BUILD)/kernel/main.o $(BUILD)/kernel/tty.o
@@ -28,7 +28,7 @@ all: $(BUILD)/kernel.elf
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-$(BUILD)/kernel/main.o:
+$(BUILD)/kernel/main.o $(BUILD)/kernel/tty.o:
 	$(MAKE) -C $(KERNEL_DIR) BUILD=$(BUILD)
 
 $(BUILD)/lib/string.o:

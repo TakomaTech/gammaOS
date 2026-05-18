@@ -1,5 +1,5 @@
-BUILD=build
-ISO=iso
+BUILD ?= $(CURDIR)/build
+ISO ?= $(CURDIR)/iso
 KERNEL=$(BUILD)/kernel.elf
 ISO_IMAGE=$(BUILD)/gamma.iso
 GRUB_CFG=$(ISO)/boot/grub/grub.cfg
@@ -20,18 +20,22 @@ $(KERNEL): | $(BUILD)
 	$(MAKE) -C arch/x86/boot BUILD=$(BUILD)
 
 $(GRUB_CFG): | $(ISO)
-	cat > $(GRUB_CFG) <<'EOF'
-	set timeout=0
-	set default=0
-	menuentry "Gamma Kernel" {
-	    multiboot2 /boot/kernel.elf
-	    boot
-	}
-	EOF
+	printf '%s\n' \
+		'set timeout=0' \
+		'set default=0' \
+		'menuentry "Gamma Kernel" {' \
+		'    multiboot2 /boot/kernel.elf' \
+		'    boot' \
+		'}' > $(GRUB_CFG)
 
 $(ISO_IMAGE): $(KERNEL) $(GRUB_CFG)
 	cp $(KERNEL) $(ISO)/boot/kernel.elf
-	grub-mkrescue -o $(ISO_IMAGE) $(ISO) 2>/dev/null || true
+	if command -v grub-mkrescue >/dev/null 2>&1; then \
+		grub-mkrescue -o $(ISO_IMAGE) $(ISO); \
+	else \
+		echo 'error: grub-mkrescue not found. Install grub-mkrescue or grub2-common to create the ISO.' >&2; \
+		exit 1; \
+	fi
 
 run: $(ISO_IMAGE)
 	qemu-system-x86_64 -cdrom $(ISO_IMAGE) -m 512M -serial stdio
